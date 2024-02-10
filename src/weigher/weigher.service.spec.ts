@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TcpClientService } from './tcp-client.service';
+import { WeigherService } from './weigher.service';
 
-describe('TcpClientService', () => {
-  let service: TcpClientService;
+describe('WeigherService', () => {
+  let service: WeigherService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TcpClientService],
+      providers: [WeigherService],
     }).compile();
 
-    service = module.get<TcpClientService>(TcpClientService);
+    service = module.get<WeigherService>(WeigherService);
   });
 
   it('should be defined', () => {

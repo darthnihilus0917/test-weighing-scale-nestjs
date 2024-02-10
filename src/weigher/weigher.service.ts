@@ -3,7 +3,7 @@ import { createConnection } from 'net';
 import { Subject } from 'rxjs';
 
 @Injectable()
-export class TcpClientService {
+export class WeigherService {
   private weightUpdatesSubject: Subject<number> = new Subject<number>();
 
   constructor() {
@@ -11,21 +11,21 @@ export class TcpClientService {
     const TCP_SERVER_PORT = 3002;
 
     const tcpClient = createConnection({ host: TCP_SERVER_IP, port: TCP_SERVER_PORT }, () => {
-      console.log('Connected to TCP server');
+      console.log('Connected to Weighing Scale');
     });
 
     tcpClient.on('data', data => {
       const weight = parseFloat(data.toString().trim());
-      console.log('Received weight from TCP server:', weight);
+      console.log('Received weight from Weighing Scale:', weight);
       this.weightUpdatesSubject.next(weight);
     });
 
     tcpClient.on('end', () => {
-      console.log('Disconnected from TCP server');
+      console.log('Disconnected from Weighing Scale');
     });
 
     tcpClient.on('error', err => {
-        console.error('TCP client error:', err);
+        console.error('Weighing Scale client error:', err);
     });
   }
 
